@@ -1,0 +1,209 @@
+1. Jenkins configuration in Linux System 
+
+Create EC2 Instance (Red Hat EL 8 OS) 
+
+Login to EC2 from Git Bash 
+
+ 
+
+sudo yum install java-1.8.0-openjdk-devel 
+
+ 
+
+sudo yum install wget git maven  -y 
+
+ 
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo 
+
+ 
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key 
+
+ 
+
+sudo yum install Jenkins -y 
+
+ 
+
+sudo service jenkins start – Start the Jenkins 
+
+In case if you wanted to stop or re start the Jenkins use below commands 
+
+sudo service jenkins stop 
+
+sudo service jenkins restart 
+
+ 
+
+Access Jenkins from Browser by typing <publicip>:8080 
+  
+sudo cat <path name>
+
+Install Suggested Plugins 
+
+Create Admin user 
+
+ 
+
+To Change the Jenkins port 
+
+cd /etc/sysconfig 
+
+vi Jenkins 
+
+Change Jenkins_port value 
+
+Restart Jenkins service 
+
+sudo service Jenkins restart 
+
+Access Jenkins from Browser by typing <publicip>:<port> 
+
+2. Pulling and Building the Code 
+
+Create Jenkins Job 
+
+Configure git and Maven to package the code/Application 
+
+https://github.com/daticahealth/java-tomcat-maven-example.git 
+
+3. Install Publish over SSH Plugin in Jenkins 
+
+ 
+
+ 
+
+Docker Server 
+
+Create EC2 Instance (ubuntu AMI) for Docker 
+
+Login to EC2 Instance from Git Bash 
+
+Install Docker 
+
+curl -sSL https://get.docker.com/ | sh 
+
+sudo usermod -aG docker ubuntu 
+
+Logout and login back 
+
+Create User named dockeradmin (and set the password for ex: docker123) 
+
+sudo adduser dockeradmin 
+
+Enter the password when it prompts and accept default values for other information 
+
+ 
+
+sudo usermod -aG docker dockeradmin 
+
+logout and login back 
+
+ Enable Password Authentication  
+
+sudo sed -ie 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config 
+
+ 
+
+sudo service sshd restart 
+
+Create Dockerfile in /opt/docker 
+
+Create the docker folder under /opt if it does not exist 
+
+cd /opt 
+
+sudo su 
+
+mkdir docker 
+
+chown dockeradmin:dockeradmin docker 
+
+exit 
+
+su – dockeradmin 
+
+Provide password 
+
+cd /opt/docker 
+
+vi Dockerfile 
+
+FROM tomcat:8.0-jre8 
+
+LABEL maintainer="Srinivas <skatta3@yahoo.com>" \ 
+
+      version="1.0" 
+
+ADD java-tomcat-maven-example.war /usr/local/tomcat/webapps/java-tomcat-maven-example.war 
+
+EXPOSE 8080 
+
+CMD ["catalina.sh","run"] 
+
+5 . On Jenkins Server, Configure the Docker system info to connect  
+
+Go To Configure System à Go to the bottom of the page  
+
+Click ADD SSH Servers 
+
+Name – Docker 
+
+Hostname – Private IP Address of the Docker EC2 Instance 
+
+Username: dockeradmin 
+
+Remote Directory  -- Leave it blank 
+
+Click on Advanced 
+
+Provide Password 
+
+Test Configuration 
+
+Configure Jenkins Job to copy the application 
+
+6. On Jenkins System, Go to Post Build actions and Select “Send build artifacts over SSH” 
+
+In our case 
+
+Source files  -- target/java-tomcat-maven-example.war 
+
+Remove prefix – target 
+
+Remote Directory -- //opt//docker 
+
+Exec Command –  
+
+docker stop docker_demo; docker rm -f docker_demo; cd /opt/docker; docker build -t docker_demo . ; docker run -d -p 8080:8080 docker_demo 
+
+ 
+
+Pulls the Code from Git 
+
+Builds the Package using Maven 
+
+ 
+
+Now Save the changes made to Jenkins Job and Build the Job 
+
+Jenkins Builds the package and connects to Docker server  over SSH and Copies the application package into /opt/docker folder 
+
+Then Jenkins Job triggers the Docker build command to build the Docker image and runs the Docker container 
+
+Once Jenkins Job is success 
+
+Got to AWS Console, Copy Public IP address of Docker Server 
+
+Access from browser with 
+
+http://<DockerServer-PublicIP>:8080/<Application-Name> 
+
+In our case, The URL is 
+
+http://<DockerServer-PublicIP>:8080/java-tomcat-maven-example 
+
+ 
+
+FYI -- Jenkins Workspace in Linux - /var/lib/jenkins/workspace/ 

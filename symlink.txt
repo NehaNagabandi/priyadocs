@@ -1,0 +1,23 @@
+files--folder
+
+echo hello>file.txt
+
+
+
+file.txt --> ln -s file.txt file.lnk
+
+ 
+
+tar czvf tarball.tar.gz files
+rsync -rtu --delete tarball.tar.g root@ip-172-31-85-2:/root
+
+unzip --> tar xzvf tarball.tar.gz
+
+ 
+
+crontab -e
+* * * * * rsync -rtu --delete tarball.tar.g root@ip-172-31-85-2:/root
+
+
+
+

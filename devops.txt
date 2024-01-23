@@ -1,0 +1,164 @@
+download vmware workstation pro
+linux os(azure)
+docker for windows and linux
+
+
+
+requests in form of json(key,value) and xml
+
+jar file are created using repositories(based on git url)
+
+build send to perticular environment(using puppet,chef,ansible)//devops role
+
+docker//(is the command to check docker is there or not)
+to install any thing in system(go to cmd and give the command)
+i.e copy url from docker and paste it,if you need perticular version mention that version
+
+docker commands:
+docker --version(for version checking)
+docker login()
+
+
+docker run -it -d httpd
+docker ps(containers running in docker)
+docker images(list of images that installed)
+repository() dockerhub(ex:tomcat)
+
+
+ubuntu commands:
+sudo su root
+sudo apt-get update
+sudo apt install docker.io(for installation)
+docker --version
+
+
+ec2(elastic compute cloud)
+instance/server(resource)
+
+commands:
+
+curl -ssl https://docker.com |sh
+sudo usermod -aG docker ubuntu
+exit
+docker -version
+docker info
+docker images
+docker ps -a(active and inactive containers)
+
+docker run hello-world(from docker hub image is created)
+docker run --name container1 hello-world(giving name to container)
+
+
+bitnami/jenkins image in docker hub:
+(pull the image from hub)
+
+to create container
+docker run -d -p 8080:8080 bitnami/jenkins
+
+
+to get into container
+docker exec -it ........./bash/bin
+
+
+docker rm container id(to delete)
+docker rm $(docker ps -a -q)(remove all containers at a time)
+docker image ... ...(deleted images)
+
+
+
+Dockerfile:
+from (selecting base image)
+(key,value)
+
+
+to add any docker file scp,path of war file and path of instance where need to place
+
+
+
+
+
+vi Dockerfile
+i(for insert mode) 
+and paste the docker file
+after press (esc)
+:
+wq
+
+docker build -t myjavatomcat:1.0 . (for creating new image with perticular version)
+
+cat Dockerfile(to display wt we added)
+
+docker run -d -p 8080:8080 mytomcat:1.0 (for container)(server port:container port)
+
+http://<PublicIP>:8080/java-tomcat-maven-example(to display in new tab)
+
+
+docker login docker.io(connecting to docker hub)
+
+docker image tag mytomcat:1.0 priyakunam/mytomcat:1.0(image name,docker id,tag name)
+docker push priyakunam/mytomcat:1.0(to push to docker hub,docker id,tagname)
+
+
+sudo apt install docker-compose -y()
+
+docker-compose up -d
+docker-compose ps
+docker-compose up -d --scale database=3(for scale)(3 is number of containers)
+docker-compose down
+
+
+
+
+
+to change hostname(sudo hostname (name))
+exit
+copy instance key to change hostname path
+
+
+
+
+curl command to install docker
+
+
+
+
+docker swarm init
+after that add port number and copy that ,paste in remaining instances
+
+docker node ls(to know what are available in the clusters)
+
+docker service create --name jenkins --replicas 2 --publish published=8080,target=8080 bitnami/jenkins
+
+docker service ps jenkins(to know where the containers are created)
+
+
+docker service scale jenkins=3(3 is total containers)
+
+docker swarm leave --force(to exit)
+
+
+--------------------------------------------------------------
+
+docker volume:
+vi docker-volume.yaml
+docker-compose -f docker-volume up -d
+
+
+
+to delete volume (docker volume prune)
+
+(to remove directory (rm -rf directoryname))
+---------------------------------------------------------------
+
+docker file is used used to automate installation and configuration of a Docker image
+
+------------------------------------------------------------
+
+ansible:(multiple tasks will be able to run)
+
+control server will install the software/push based approach(ansible)
+pull based(chef) 
+control server configure all node servers
+
+
+

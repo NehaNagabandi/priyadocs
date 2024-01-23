@@ -1,0 +1,119 @@
+
+to copy war file from local to cmd/gitbash:
+
+go to the folder where the file need to place
+tomcat(Servlet container ..i.e it serves static content)
+then copy the path
+#scp path with:/home/root of user where we are
+#sudo cp java-tomcat-maven-example.war /opt/apache-tomcat-9.0.65/webapps
+# cd  /opt/apache-tomcat-9.0.65/webapps
+file is copied
+# ./startup.sh(cd ../bin)(in bin folder)
+then using publicip : port we can acess the added war file
+
+------------------------------------------------------------
+(web server)Nginx:(ubuntu)//apt-get// 
+
+sudo apt-get install nginx
+sudo systemcli status nginx
+if service is stopped(sudo service nginx status)
+---------------------------------------------------------------
+linux (package manager)
+yum install <package name>
+yum remove <package name>
+yum list <package name>(to find perticular package)
+yum list insatlled(what are installed)
+yum list(data base)
+---------------------------------------------------------------
+vi editor(available in all linux platforms):
+linux commands:
+touch file1.txt(add empty file) //
+rm file(remove file)
+mv file files(rename)
+echo priya > file ::echo nivas > file (override the content)
+echo nivas >> file(adding data to file )
+vi file3(data wriiten in vi editor)//owner(read and write),
+                                    group(read and write),
+                                    others (read)
+ls -la(hidden files)
+ls -lt(recently created files)
+mkdir abc(creates abc directory)
+touch file4.html(add new files i.e wildcards)
+ls -l *html(to display that html files)
+rmdir (to remove empty directory)
+rm - rf directory//rm -r directory(removes directory)
+chmod o+w file(adding write permission to other) 
+chmod o-rw file(removing read and write permission to other)
+            //(permissions will be given based on numbers also)
+
+cp file file1(copy from 1 to other file or directory)
+cp *.txt test(all txt files copied to directory)
+mv file test(move from one folder to other) 
+
+sudo adduser ansible(for adding user)
+sudo passwd ansible(add pw)
+cd /home
+ls(to check ansible or user is added or not)
+su - ansible(change path)then enter pw
+ps -ef | grep apache2//name of service// (search)
+
+tar -cvzf filename.tar.gz files(to zip //to compress)
+tar xvcf filename.tar.gz(to unzip)
+
+
+
+which bash
+vi priya.sh
+#!/../../
+echo hello
+read myname
+echo "hello $myname hie?"
+./priya.sh
+---------------------------------------------------------------
+artifact:  readily available file
+
+nexus:
+nexus repository(stores artifacts)
+
+
+154eee9b33f4
+
+docker exec -it 154eee9b33f4 /bin/bash
+
+29b7b9ce36c74f93929fa91431821219
+
+
+http://3.83.45.227:8080/(jenkins)
+
+
+
+ec2-54-205-222-253.compute-1.amazonaws.com:8081
+MyGroupId
+1.0-SNAPSHOT
+maven-snapshots
+webapp
+WAR
+target/java-tomcat-maven-example.war
+----------------------------------------------------------------
+MongoDB :
+show dbs;
+use local;
+
+db.users.insert({
+... _id : ObjectId("507f191e810c19729de860ab"),
+... title: "Mongo Overview",
+... description: "Mongo is no sql database",
+... by: "Mongo ",
+... url: "http://www.mongo.org",
+... tags: ['mongo', 'database', 'NoSQL'],
+... likes: 10
+... })
+show collections;
+
+x = objectId();(for generating random id)
+
+for displaying:
+db.users.find({"likes":{$gte:6}}).pretty()
+db.users.find({$and: [{<key1>:<value1>}]}).pretty()
+
+

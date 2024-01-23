@@ -1,0 +1,76 @@
+Kernel:(Linux-Monolithic Kernel
+ 
+          where all operating system services operate in kernel space)
+
+Kernel is a system software and part of an Operating system. 
+
+Kernel acts as an interface between Physical Hardware and all the Processes of computer (user-level applications and hardware i.e. CPU and disk memory.)
+
+Whenever the system boots, the kernel is the first program loaded after the bootloader since the kernel must handle the rest of the system for the operating system
+The kernel will remain in memory until the operating system is shut down.
+
+Kernel is responsible for Memory Management , Device Management, Task Management. 
+
+
+
+
+
+In root directory these are the default standard sub directories:
+
+bin(binaries) : All the executable binaries are present in this directory which is used while booting 
+                Its one of the important directory in the structure , if its gets deleted then system will not boot up
+            
+             bin contains programs (and scripts) that are used in many contexts (like ls, cp ,cat)
+
+
+boot(boot files) :It contains Linux kernel and allocates  initial RAM disk image and initiates bootloader. 
+       Configuration file of boot loader (GRUB -- it’s a tool which is used by OS to boot) is located under this directory .
+      initrd.img – a temporary file system, used prior to loading the kernel
+      System.map – a symbol lookup table(symbol names and their addresses in memory)
+
+dev(device files):consists of files that represent devices that are attached to the local system
+However, these are not regular files that a user can read and write to; these files are called devices files or special files 
+
+etc  : It stores storage system configuration files, executables required to boot the system, and some log files.
+     Most global config files are located in the /etc directory.(/etc/fstab(to mount) ,etc/hosts (a file which maps IP addresses to their hostnames))
+
+home  :With the home directory the user can store all their  files, login scripts, and user information
+
+lib  :All the libraries will be loaded from here required by your binaries while booting.
+  
+lost+found :Data recovery of that devices
+ 
+media : Auto mounting.  For example, when you insert a CD into your Linux system, a directory will automatically be created inside the /media directory.
+ 
+mnt :It is used to mount temporary mount points for mounting storage devices
+ 
+opt : Optional software -- to install optinal software. 
+ 
+proc :It contains useful information about the processes that are currently running, it is regarded as control and information center for kernel
+ 
+root : root home directory  :Its a home directory for the root user 
+
+run : To store temporary files used in system boot.
+ 
+sbin :sbin contains "administrative tools" (like fdisk(format disk) , mkfs(make file sysytem),adduser....) 
+  
+snap  : where the files and folders from installed snap packages appear on your system.
+
+srv : Contains service files installed on your system i.e contains data for services provided by the system
+ (if you run a HTTP server it is a good practice to store the website data in srv)
+
+sys : information about the kernel's view of the system.(a virtual filesystem, which stores and allows modification of the devices connected to the system)
+ 
+tmp :stores temporary files on the system. 
+
+usr:user binaries  
+Contains binary programs used by a user.   
+
+var :variable 
+Contains the files which is not static and expected to be changed after every operations performed on Linux system 
+(Files that have an unexpected size and whose content is expected to change continuously during normal operation of the system are stored here. For example log files)
+
+
+
+
+

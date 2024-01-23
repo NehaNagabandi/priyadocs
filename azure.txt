@@ -1,0 +1,178 @@
+3 clould service model
+software as a service (SaaS), 
+infrastructure as a service (IaaS) (os installation,application)
+platform as a service (PaaS) (just configure application)
+What is IaaS PaaS and SaaS?
+IAAS gives access to the resources like virtual machines and virtual storage.
+(more control,more management)
+PAAS give access to run time environment to deployment and development tools for application.
+(less control,less management)
+SAAS give access to the end user.
+(readily avaliable application i.e offfice 365)
+
+
+cloud types:
+
+public cloud: owned by service providers and ,multiple org will use,based on vpn network
+
+private cloud: own cloud i.e in their particular data centers(mainly for security)
+
+hybrid cloud: combination of public and private 
+
+
+Azure Active Directory (Azure AD)(cloud based identity for active services)
+
+Any instance used by azure ,service (Resource)
+Resource has one resource group and multiple regions,resources can be moved to diff res grps
+res grp for(logical perspective)
+
+
+cloud shell
+(power shell,azure CLI(bash)) these 2 commands
+
+
+commands:for powershell(case insensitive commands)
+
+Get-AzContext(to know subscription ,where we are )
+Get-AzSubscription(to know how many subscription are present)
+set-azcontext -subscription "anothername where we need to change" (switch btw subscription)
+get-azresourcegroup(list of resource groups)
+get-azresource(list of resources running in subscription)
+new-azresourcegroup -name abc -location centralus(to create resource group using power shell)
+get-azresourcegroup -name res*(list of resorcegrp ,particular name starts with)
+remove-azresourcegroup -name abc -force(by default it will delete)
+get-azresourcegroup(here we can add particular name also) | remove-azresourcegroup (remove all resourcegroups)
+
+
+:for bash i.e azure cli(case sensitive commands)
+
+az account show(to which subscription that we are connected)
+az account list(list of subscriptions)
+az account set --subscription nameofsub(to change the subsc)
+
+cidr(no of ip,range of ip)
+network:(0 to 255)
+network port cant be changed,host part is 0 until value is 255
+ip= 2^(32-range of ip)
+ 
+
+sub net:better management,improve performance,security
+
+ipv4 vs ipv6(space for adress allotment)
+virtual network: sub nets for ip adresses(without private ip we cannot deploy)
+
+virtual machine: here virtual networks are connected
+
+public ip adress creation:sku(stock keeping unit)(data access only from internet)
+sku: STANDARD(high productivity and more secure) compared to BASIC
+ 
+
+tcp and udp protocol
+
+adding NSG to SUBNETS
+
+peering(allowing trafic from one to other)
+
+
+(after session timeout)netsh advfirewall set allprofiles state off
+
+before vm creation: (vm is used for multiple systems and to save storage capacity)
+
+network is created//for networks we are creating vm//
+
+hostname(name of vm where we are)
+
+
+spot instance:benifit for pay users i.e pay-as-you-go
+
+disks:
+hdd(poor performance)
+
+
+web server connect command in vm usind rdp(install-windowsfeature web-server)
+here we can paste our public ip to access the webserver
+
+vm running:then charges will be  for {compute cost,disk cost,ip adress cost}
+by stopping then cost for{disk , if ip is static then it will be charged}
+
+
+publickey(for vm)
+
+fault domain(A fault domain is a set of hardware components that share a single point of failure.)
+
+and same data center but difference racks
+
+
+scaleup/down(increasing capacity of instance)//vertical scaling
+scaleout/in//horizontal
+
+vm scale set:(horizontal) here instances will be automated based on usage
+
+block blob (default ,cloud storage)
+page(ex:disk)
+append
+
+
+sas (used to access blob)
+
+
+container access(private)
+by using obj url cant able to access,to acess ket generate sas url
+
+
+--------->fileshare in windows vm to azure cloud using file share
+(from vm to cloud (true)only one way of file share)
+
+
+user acess(in active directory by adding user)
+using azure active directory(AAD) we can authentic multiple applications
+
+identity is an object
+account is an identity of data center
+tenant(AAD of your org account)
+
+groups in AAD(security,office365)
+
+delete of sync storage(have to unregister then delete)
+
+first unregister(from register servers)
+server end point
+
+
+for backup & recovery:(recovery service vauts)
+create retension wall
+backup-->schedule,retention period
+
+
+template deploy:
+after vm creation ,there is template console here 
+
+
+
+paas(web /app services readily available in azure)
+iaas(vm in azure)
+
+app service plan(physical allocation need)
+web application is in app service
+
+tls/ssl(for security layers )
+
+
+azure vpn gateway(traffic flow through internet i.e onpremises to azure cloud)(ipsec/internet protocol security and ikeu2/internet key exchange u2)
+
+express route(costly compared to vpn gateway)(this traffic will flow from private network,high speed)
+
+
+metrics(it is not visible if you dont pin it to dashboard)
+
+
+
+
+
+
+windows+r-mstsc
+
+after adding disk in vm:in windows+r tab (diskmgmt.msc)
+
+
+

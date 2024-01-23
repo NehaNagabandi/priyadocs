@@ -1,0 +1,88 @@
+docker image : all the code will be in form of template that we can use at any point of time
+
+
+
+docker container : it is an instance of docker image and runs applications and servecies
+
+
+docker registry : it is a repository for storing docker images
+
+
+dockerfile : text file contains set of instructions for build docker image(it has base image,working directory,depencies for perticular application,environment varaibles.port expose,CMD or entrypoint)
+
+# Use an official base image
+FROM ubuntu:latest
+
+# Set environment variables (if needed)
+ENV MY_ENV_VAR=my_value
+
+# Run commands to install dependencies and set up the application
+RUN apt-get update && \
+    apt-get install -y some-package && \
+    apt-get clean
+
+# Copy application files into the image
+COPY ./app /app
+
+# Set the working directory
+WORKDIR /app
+
+# Expose ports (if your application listens on a specific port)
+EXPOSE 80
+
+# Define the command to run when the container starts
+CMD ["./start.sh"]
+
+
+docker compose : running multiple containers at a time(it uses yaml file to define services, networks, ports,...which are required for aapplication)
+
+version:
+services:
+  service name: 
+   image: docker image name:tag
+   
+   
+docker storage : docker stores files and folders in layer architecture
+   
+   layers: image layer(read only layer) and container layer (read and write)
+	
+	image layer:
+	
+	1. base ubuntu
+	2. apt packages layer
+	3. depencies layer
+	4. source code layer
+	5. entry point layer
+	
+	container layer:
+	6. container layer(application running layer)
+
+docker volume (default directory /var/lib/docker/volume/.....) : sharing data to other container even container  is not exist 
+1. anonymous volume : docker run -v data1  (/var/lib/docker/volumes/random-hash/_data)
+2. named volume : docker run -v fe_data_volume:/data1 (/var/lib/docker/volumes/fe_data_volume/_data)
+3. bind volume or host volume : docker run -v /opt/data1:/data1 (/opt/data1)
+
+volume mount--binds volume from volume directory
+bind mount -- mounts from any location on docker host 
+
+
+---command to mount:  docker run --mount type=bind,source=/data/lib/volume,target=/data/priya/id 
+
+
+storage drivers: os have default storage drivers (for Ubuntu ---AUFS)
+
+docker network : used for connection between containers and also isolates the data between users
+1. bridge network : connection between container with allocated ip (different ip for container network and host)
+2. host network : having same ip for container network and host
+3. custom bridge network : in this we can customise our container data from end users to admins (i.e bridge network connection and also isolates the container data)
+-------- 
+
+container orchestartion  : it consists set of tools and scripts that help host containers in a production ,in this container orchestartion multiple docker hosts can host containers, if one one failed another starts.
+     this container orchestartion will also provide networks,load balancing between these containers in different hosts.
+	 
+   docker swarm : from docker is orchestartion tool
+   
+   multiple docker container can be distributed by docker swarm
+
+
+

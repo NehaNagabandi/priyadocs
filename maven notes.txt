@@ -1,0 +1,60 @@
+maven : 
+
+
+
+
+
+
+POM stands for Project Object Model.it is of xml format
+All POM files require the project element and three mandatory fields: 
+groupId, artifactId, version.
+src{main,test}
+target{}
+mvn clean-clean target
+compile-compile code
+test-test the testcases
+package-create jar file
+install-install the jar file to local repository
+jar(java archive)
+war(web archive)
+repository(all jar files are connected)
+
+plugin:add specific feature to the existing code or program
+{build ,reporting are 2 plugins}
+
+
+profile: for windows that perticular os is needed that is inside profile
+(unique settings)
+profile activation with "-p"//multiple profiles can be activated
+
+
+
+<activation>
+<property>
+<name>env.profile</name>
+<value>dev.server</value>
+</property>
+</activation>
+
+
+profile : dependency/plugins/properties/based on environment variable
+settings: (user settings)path: {userhome}/settings.xml
+(global settings)path: {globalhome}/settings.xml
+
+	
+git add.
+git commit -m "modification"
+
+
+
+
+
+
+
+code for notepad++:
+
+git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+
+
+
+

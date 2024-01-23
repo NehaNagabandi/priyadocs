@@ -1,0 +1,32 @@
+commands:
+
+1.free >> to check free memory 
+2. nproc >> to check num of cpus in vm
+3. man ls >> details of ls command::man is to check the details and usage of command as like help
+4. top >> details about all processess also to check node status
+
+commands in script:
+
+1. set -x >> refers to debug i.e while executing ,when we have multiple lines of code we donot need to write 
+				  echo command for each line it automatically displays the input also 
+ 
+   set -e >> exit the script when it has error
+   set -o >> error dispalys when pipe fails both set -e and set -o are interlinked
+
+2. ps -ef >> to display all processess running 
+
+3. | >> is used for giving one output to another :: ps -ef | grep phyton
+		(exception case | can't taken output from stdin "i.e system inputs" example: date | echo "today" 
+								output is today)
+
+4. awk >> filter out the info from output
+   (ps -ef | grep amazon | awk -F" " '{print $2}') { extracts the second field from the filtered lines.}	
+
+5. curl >> is used to get data directly from internet {ex: if we have stored container log file in github then by using this curl giturlpath you can abe to see logs }
+
+6. wget >> it will download the file to your present directory then you can able to view the content {slight diff btw curl and wget}
+
+7. find / -name usr >> it will find all names with usr
+
+8. hard link and soft link: hard link is link copy of data i.e copied files have same data as that of original if we change content in origal then copied files content also changed
+while soft link has one original and remaining files indicates the direction to that original file , softlinks cant store content,if original file location get updated , soft link path cant automatically updated
